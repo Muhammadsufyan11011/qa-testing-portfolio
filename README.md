@@ -1,25 +1,41 @@
-# QA Testing Portfolio
+# QA Testing & Automation Portfolio
 
-A practical **manual software testing portfolio** demonstrating test planning, requirements-based test design, bug reporting, exploratory testing and defect tracking.
+A practical Software Quality Assurance (QA) portfolio demonstrating manual testing, test case design, bug reporting, exploratory testing, and browser automation using Python and Selenium WebDriver.
 
-The project uses a fictional e-commerce application called **DemoShop** so that every test case has explicit requirements and every reported defect has a defined expected result.
+This repository contains manual testing documentation for a fictional e-commerce application called **DemoShop** and automated UI tests for the publicly available **SauceDemo** practice website. These are separate practice projects and are documented independently.
 
-> All application behaviour, test results and defects in this repository are synthetic and created for learning and portfolio purposes. They do not describe a real company's production system.
+## About This Portfolio
 
-## What this project demonstrates
+This portfolio demonstrates my understanding of software testing principles and practical QA workflows, including:
 
-- Manual functional testing
-- Positive and negative test cases
-- Boundary-value testing
-- Requirements-based testing
-- Bug reporting
-- Severity vs priority assessment
-- Exploratory testing
-- Regression thinking
-- Test summary reporting
-- GitHub Issues for defect tracking
+- Manual Functional Testing
+- Positive and Negative Testing
+- Test Case Design and Execution
+- Requirements-Based Testing
+- Bug Reporting and Defect Documentation
+- Severity and Priority Assessment
+- Exploratory Testing
+- Regression Testing Concepts
+- Test Planning and Test Summary Reporting
+- Python Test Automation
+- Selenium WebDriver
+- Explicit Waits and Element Locators
+- Assertions and PASS/FAIL Reporting
+- Git and GitHub
 
-## Repository structure
+## Technologies and Tools
+
+| Technology | Purpose |
+|---|---|
+| Python | Writing automation scripts |
+| Selenium WebDriver | Browser automation |
+| Google Chrome | Running automated UI tests |
+| VS Code | Writing and managing test code |
+| Git | Version control |
+| GitHub | Source code hosting and portfolio presentation |
+| Markdown | QA documentation |
+
+## Repository Structure
 
 ```text
 qa-testing-portfolio/
@@ -37,98 +53,160 @@ qa-testing-portfolio/
 │   └── session-notes.md
 ├── test-summary/
 │   └── test-summary-report.md
+├── test_login.py
+├── test_invalid_login.py
+├── test_saucedemo.py
+├── .gitignore
 └── README.md
 ```
 
-## Test scenario
+## Project 1: Manual Testing — DemoShop
 
-DemoShop is a fictional online store covering four core areas:
+**Application:** Fictional e-commerce application
 
-1. Authentication
-2. Product catalogue
-3. Shopping cart
-4. Checkout and order submission
+The DemoShop project focuses on structured manual testing and QA documentation. Its requirements, test cases, defect reports, and test summary are practice materials created for portfolio purposes.
 
-The functional specification is available in [`requirements/demo-shop-requirements.md`](requirements/demo-shop-requirements.md).
+### Testing activities
 
-## Test execution
+- Reviewed application requirements.
+- Designed positive and negative test cases.
+- Covered authentication, product catalogue, cart, and checkout scenarios.
+- Documented expected and actual results.
+- Prepared sample bug reports with severity and priority.
+- Recorded exploratory testing observations.
+- Prepared a test summary and regression recommendations.
 
-The manual suite contains **16 test cases** across login, catalogue, cart and checkout.
+### Documentation
 
-| Result | Count |
-|---|---:|
-| Passed | 13 |
-| Failed | 3 |
-| Blocked | 0 |
-| Pass rate | 81.25% |
+- [Requirements](requirements/demo-shop-requirements.md)
+- [Test Plan](test-plan/test-plan.md)
+- [Manual Test Cases](test-cases/manual-test-cases.md)
+- [Bug Reports](bug-reports/)
+- [Exploratory Testing Notes](exploratory-testing/session-notes.md)
+- [Test Summary Report](test-summary/test-summary-report.md)
 
-The complete suite is documented in [`test-cases/manual-test-cases.md`](test-cases/manual-test-cases.md).
+**Important:** DemoShop is fictional. Its documented defects and test results are synthetic practice examples, not verified defects in a live production application.
 
-## Defects found
+## Project 2: Selenium Automation — SauceDemo
 
-Three synthetic defects are documented in detail:
+**Practice website:** https://www.saucedemo.com/
 
-### BUG-001 — Invalid email format accepted on login
+This project uses Python and Selenium WebDriver to automate selected browser-based test scenarios on SauceDemo.
 
-**Severity:** Medium · **Priority:** Medium  
-The login form attempts authentication for an obviously invalid email instead of blocking the request with clear validation.
+### Automated test scenarios
 
-[Bug report](bug-reports/BUG-001-invalid-login-email-accepted.md) · [GitHub Issue #1](https://github.com/PetrosChatz/qa-testing-portfolio/issues/1)
+1. **Valid Login:** Verify that valid credentials open the products page.
+2. **Invalid Login:** Verify that an incorrect password displays an error message.
+3. **Add to Cart:** Verify that adding a product updates the shopping cart badge.
+4. **Checkout:** Add a product to the cart, enter checkout information, and verify that the checkout overview page opens.
 
-### BUG-002 — Cart total does not update after quantity change
+The automation scripts use Selenium element locators, explicit waits, assertions, and browser cleanup.
 
-**Severity:** High · **Priority:** High  
-The quantity changes correctly, but the cart total remains stale until page refresh.
+### Automation files
 
-[Bug report](bug-reports/BUG-002-cart-total-not-updated.md) · [GitHub Issue #2](https://github.com/PetrosChatz/qa-testing-portfolio/issues/2)
+- `test_login.py` — Standalone valid-login test.
+- `test_invalid_login.py` — Standalone invalid-login test.
+- `test_saucedemo.py` — Combined automation suite.
 
-### BUG-003 — Double-clicking Place order creates duplicate orders
+### Prerequisites
 
-**Severity:** Critical · **Priority:** High  
-Two rapid submissions can create two orders, demonstrating a transaction-integrity and idempotency problem.
+- Python 3
+- Google Chrome
+- Visual Studio Code or another code editor
+- Git
 
-[Bug report](bug-reports/BUG-003-duplicate-order-on-double-click.md) · [GitHub Issue #3](https://github.com/PetrosChatz/qa-testing-portfolio/issues/3)
+### Setup Instructions on Ubuntu/Linux
 
-## Exploratory testing
+**1. Open the project directory**
 
-A time-boxed exploratory session focuses on cart and checkout state consistency, including repeated actions, navigation, quantity boundaries and duplicate submission.
+```bash
+cd ~/Downloads/qa-testing-portfolio-main
+```
 
-See [`exploratory-testing/session-notes.md`](exploratory-testing/session-notes.md).
+**2. Create a virtual environment**
 
-## Test summary
+```bash
+python3 -m venv .venv
+```
 
-The test summary consolidates execution metrics, open defects, release risk and regression recommendations.
+**3. Activate the virtual environment**
 
-See [`test-summary/test-summary-report.md`](test-summary/test-summary-report.md).
+```bash
+source .venv/bin/activate
+```
 
-## Key QA concepts demonstrated
+**4. Install Selenium**
 
-### Severity vs priority
+```bash
+python -m pip install selenium
+```
 
-**Severity** describes how strongly a defect affects the system or user. **Priority** describes how urgently the team wants the defect fixed. They are related, but they are not the same measurement.
+Selenium Manager can help manage the browser driver automatically. A compatible browser installation and network access may be required.
 
-### Expected vs actual result
+### Run the automation suite
 
-Each defect is tied back to an explicit requirement. This avoids calling unexpected behaviour a bug without first defining what the system is supposed to do.
+With the virtual environment activated, run:
 
-### Exploratory vs scripted testing
+```bash
+python test_saucedemo.py
+```
 
-Scripted test cases provide repeatability and coverage. Exploratory testing gives the tester freedom to follow risks and unexpected behaviour. The two approaches complement each other.
+The script runs the test functions listed in its test list and prints a summary of passed and failed tests.
 
-### Regression testing
+Run an individual script when needed:
 
-A defect fix can unintentionally affect working functionality. The summary report therefore identifies the cart and checkout areas that should be retested after fixes.
+```bash
+python test_login.py
+```
 
-## Possible next improvements
+```bash
+python test_invalid_login.py
+```
 
+### Test results
+
+Test results should be reported from actual test execution. The combined suite prints a PASS or FAIL message for each executed test and a final summary.
+
+Do not interpret the fictional DemoShop manual-testing metrics as SauceDemo automation results. Update any portfolio metrics only after confirming the relevant test run.
+
+## QA Concepts Demonstrated
+
+### Expected Result vs. Actual Result
+
+The expected result describes the intended application behaviour. The actual result records what happened during testing. Comparing the two helps determine whether further investigation is needed.
+
+### Severity vs. Priority
+
+- **Severity** describes the impact of a defect on the application or user.
+- **Priority** describes how urgently the defect should be addressed.
+
+### Manual vs. Automation Testing
+
+Manual testing helps explore workflows and evaluate behaviour. Automation helps repeat selected checks consistently and can support regression testing.
+
+### Assertions and Explicit Waits
+
+Assertions verify expected conditions. Explicit waits help Selenium wait for a specific page condition or element state instead of relying only on fixed delays.
+
+## Future Improvements
+
+- Add more automated cart and checkout scenarios.
+- Add negative checkout validation tests.
+- Introduce pytest fixtures and parameterized tests.
+- Generate structured HTML test reports.
 - Add API testing with Postman or Python requests.
 - Add SQL validation examples.
-- Add browser/device compatibility coverage.
-- Create a traceability matrix linking requirements to test cases.
-- Add automated UI tests after the manual testing foundation is established.
+- Set up GitHub Actions for automated test execution.
+- Create a requirements-to-test-case traceability matrix.
 
 ## Author
 
-**Petros Chatzistefanou**  
-BSc Applied Informatics — Information Systems, University of Macedonia  
-[LinkedIn](https://www.linkedin.com/in/petros-chatzistefanou/)
+**Muhammad Sufyan**
+
+Aspiring QA Engineer | Manual Testing | Python | Selenium WebDriver
+
+GitHub: [Muhammadsufyan11011](https://github.com/Muhammadsufyan11011)
+
+---
+
+This portfolio is intended for learning and demonstrating practical software testing skills. Test results and findings should be interpreted according to the specific practice application and test execution described in each project.
